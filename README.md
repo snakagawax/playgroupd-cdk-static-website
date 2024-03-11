@@ -1,14 +1,32 @@
-# Welcome to your CDK TypeScript project
+# Welcome to Your CDK TypeScript Project
 
-This is a blank project for CDK development with TypeScript.
+Web can create a environment for the origin group with CDK.
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+static_main-stack.ts:
+- Create an Amazon S3 bucket (ap-notrheast-1) and Amazon CloudFront distribution.
+- CloudFront uses the S3 bucket as an origin and sets up origin access control.
+- The S3 bucket is where the website content is deployed and delivered via the CloudFront distribution.
 
-## Useful commands
+static_maintenance-stack.ts:
+- Create an Amazon S3 bucket (us-west-2) for the maintenance page.
+- This bucket will be used to host static content for maintenance pages.
+- No CloudFront distribution will be created.
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `npx cdk deploy`  deploy this stack to your default AWS account/region
-* `npx cdk diff`    compare deployed stack with current state
-* `npx cdk synth`   emits the synthesized CloudFormation template
+![image](image.png)
+
+## Deployment Instructions
+
+- Install Node.js using nvm:
+  ```
+  nvm install node
+  nvm use node
+  ```
+- Deploy the static site stack:
+  ```
+  cdk deploy StaticSiteStack
+  ```
+- Deploy the maintenance site stack:
+  ```
+  cdk deploy MaintenanceStack
+  ```
+- Configure OAC settings and origin group settings manually:

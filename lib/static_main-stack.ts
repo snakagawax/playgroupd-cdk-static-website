@@ -6,10 +6,10 @@ interface SubStackProps extends StackProps {
   accountId: string;
 }
 
-export class FrontendStack extends Stack {
+export class MainStack extends Stack {
 
   public readonly contentsBucket: aws_s3.IBucket;
-  public readonly distribution: aws_cloudfront.IDistribution;
+  public readonly distribution: aws_cloudfront.Distribution;
 
   constructor(scope: Construct, id: string, props: SubStackProps) {
     super(scope, id, props);
